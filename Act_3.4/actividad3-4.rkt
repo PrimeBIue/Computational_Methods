@@ -44,7 +44,8 @@
         result
     (loop
         (cdr lst)
-        (append result (regexp-match #px"\\(?>-?\\(?>0|[1-9]\\d*\\)\\(?>\\.\\d+\\)?\\(?>[E|e]-?\\(?>-?\\(?>0|[1-9]\\d*\\)\\(?>\\.\\d+\\)?\\)\\)?\\)" (car lst)))
+        (append result (regexp-match #px"(?>-?(?>0|[1-9]\\d*)(?>\\.\\d+)?(?>[E|e]-?(?>-?(?>0|[1-9]\\d*)(?>\\.\\d+)?))?)"
+    (car lst)))
     ))))
 
 
@@ -71,12 +72,12 @@
 
     ;;; Leer el json
 
-    ;;; (define data (read-file in-file-path))
-
+    (define data (read-file in-file-path))
+    (println data)
     ;;; Aplicar regex
 
-    ;;; (define json (apply_regex data))
-
+    (define json (apply_regex data))
+    (println json)
     ;;; Iterar la lista de elementos de json y crear su partes html
 
     (define json_html (list 
