@@ -53,7 +53,7 @@ Program which utilizes Regular Expressions to convert JSON file into HTML file, 
 (let loop
   ([word word] [lst empty])
   (if (string=? word "")
-    lst
+    (append lst (list(list "\n" 'new_line)))
   (let-values ([(token type)
     (cond
       ;;; Key

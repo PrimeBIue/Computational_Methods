@@ -192,6 +192,7 @@ Program which utilizes Regular Expressions and Parallelism to convert JSON file 
 
 
 (define (main num-threads folder-path)
+    (define time (current-inexact-milliseconds))
     ;;; Get all json files in folder
     (define json_files (get_json_files folder-path))
     (define json_files_split (split-by json_files num-threads))
@@ -200,7 +201,7 @@ Program which utilizes Regular Expressions and Parallelism to convert JSON file 
     (define futures (map highlight_files json_files_split))
     ;;; Launch all the futures in the list
     (define result (map touch futures))
-    result
+    (displayln (- (current-inexact-milliseconds) time))
 )
 
 (define (split-by lst n)
@@ -208,3 +209,4 @@ Program which utilizes Regular Expressions and Parallelism to convert JSON file 
             (cons (take lst n) (split-by (drop lst n) n))
             '() ))
 
+(main 1 "../Act_5.2")
